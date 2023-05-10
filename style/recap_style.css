@@ -1,0 +1,29 @@
+nav {
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-left: 15px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+table {
+    font-size: 25px;
+    border-spacing: 2px;
+    border: 1px solid rgb(171, 171, 171);
+}
+
+tr td {
+    border: 0;
+    padding: 10px;
+}
+
+th {
+    padding: 10px;
+    background-color: #f2f2f2;  
+}
+
+tbody tr:nth-child(even) {background-color: #f2f2f2;}
