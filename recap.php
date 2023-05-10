@@ -1,6 +1,7 @@
 <?php 
-session_start();
+    session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -51,8 +52,9 @@ session_start();
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                    "<td>".$product['qtt']."</td>",
+                    "<td>".$product['qtt']."<form action ='quantite.php' method='post'><input type='submit' name='removeItem' value='-'></form></td>",
                     "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
+                    "<td><form action ='delete.php' method='post'><input class ='btn btn-danger' type='submit' name='clearOne' value='Supprimer'></form></td>",
                     // number_format(variable à modifier, nombre de décimales souhaité, caractère séparateur décimal, caractère séparateur de milliers)
                 "</tr>";
             $totalGeneral += $product['total']; // Ajoute le total du produit parcouru à la valeur de $totalGeneral
@@ -70,7 +72,8 @@ session_start();
         } else {
 
         $nbProducts = $_SESSION['nbProducts'];
-            echo "Nombre de produits : ".$nbProducts;        
+            echo "Nombre de produits : ".$nbProducts.
+            "<form action ='delete.php' method='post'><input class ='btn btn-danger' type='submit' name='clearAll' value='Tout supprimer'></form>" ;        
         }
     ?>
 </body>
