@@ -29,12 +29,12 @@
         <main>
             <form action="traitement.php" method="post"> 
             <?php 
-                    if(!isset($_SESSION['nbProducts']) || empty($_SESSION['nbProducts'])) {
+                    if(!isset($_SESSION['products']) || empty($_SESSION['products'])) {
                         echo "<p> Nombre de produits : 0 </p>";
                     } else {
             
-                    $nbProducts = $_SESSION['nbProducts'];
-                        echo "<p> Nombre de produits : ".$nbProducts."</p>";        
+                    $productsCount = count($_SESSION['products']);
+                        echo "<p> Nombre de produits : ".$productsCount."</p>";        
                     }
             ?>
             <!-- action (qui indique la cible du formulaire, le fichier à atteindre lorsque l'utilisateur soumettra le formulaire)
@@ -60,6 +60,16 @@
                 <p>
                     <input type="submit" name="submit" value="Ajouter le produit"> <!-- Le  champ  <input  type="submit">,  représente  le  bouton  de  soumission  du  formulaire-->
                 </p>
+
+                <?php
+                if(!isset($_SESSION['products']) || empty($_SESSION['products'])) {                
+
+                } else {                    
+                    $displayMessage = $_SESSION['checkProduct'];
+                    echo "<p>".$displayMessage."</p>";        
+                }
+                ?>
+
             </form>
         </main>
     </body>    
