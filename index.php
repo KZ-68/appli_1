@@ -27,7 +27,8 @@
         </header>
         
         <main>
-            <form action="traitement.php" method="post"> 
+            <section>
+            <form class="entry" action="traitement.php" method="post"> 
             <?php 
                     if(!isset($_SESSION['products']) || empty($_SESSION['products'])) {
                         echo "<p> Nombre de produits : 0 </p>";
@@ -71,6 +72,7 @@
                 ?>
 
             </form>
+            </section>
         </main>
     </body>    
 </hmtl>
