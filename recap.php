@@ -51,10 +51,17 @@
             echo "<tr>",
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
-                    "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                    "<td>".$product['qtt']."<form action ='quantite.php' method='post'><input type='submit' name='removeItem' value='-'></form></td>",
+                    "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>", // Affiche le format du prix avec deux   décimales 
+                    "<td>".
+                    "<form class ='qtt' action ='quantity.php' method='post'><input type='submit' name='$index' value='-'></form>&nbsp;".$product["qtt"]."&nbsp;<form class ='qtt' action ='quantity.php' method='post'><input type='submit' name='$index' value='+'></form>",
+                    "</td>",
                     "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                    "<td><form action ='delete.php' method='post'><input class ='btn btn-danger' type='submit' name='clearOne' value='Supprimer'></form></td>",
+                    "<td>".
+                        "<form action='delete.php' method='post'>",
+                            "<input class='btn btn-danger' type='submit' name='clearOne' value='Supprimer'>",
+                            "<input type='hidden' name='productIndex' value='$index'>",
+                        "</form>",
+                    "</td>",
                     // number_format(variable à modifier, nombre de décimales souhaité, caractère séparateur décimal, caractère séparateur de milliers)
                 "</tr>";
             $totalGeneral += $product['total']; // Ajoute le total du produit parcouru à la valeur de $totalGeneral
@@ -67,12 +74,12 @@
          "</table>";
         }
         
-        if(!isset($_SESSION['nbProducts']) || empty($_SESSION['nbProducts'])) {
+        if(!isset($_SESSION['products']) || empty($_SESSION['products'])) { // Condition si un tableau différent de products est inscrit en session, OU si le tableau products est vide
             echo "<p> Nombre de produits : 0 </p>";
         } else {
 
-        $nbProducts = $_SESSION['nbProducts'];
-            echo "Nombre de produits : ".$nbProducts.
+        $productsCount = count($_SESSION['products']); // Affecte une variable pour compte les produits du tableau products
+            echo "Nombre de produits : ".$productsCount.
             "<form action ='delete.php' method='post'><input class ='btn btn-danger' type='submit' name='clearAll' value='Tout supprimer'></form>" ;        
         }
     ?>
