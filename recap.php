@@ -53,9 +53,15 @@
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>", // Affiche le format du prix avec deux   décimales 
                     "<td>".
-                        "<form class ='qtt' action='quantity.php' method='post'><input type='submit' name='$index' value='-'>"
-                        .$product['qtt']. 
-                        "<form class ='qtt' action='quantity.php' method='post'><input type='submit' name='$index' value='+'></form>",
+                        "<form action='quantity.php' method='post'>",
+                            "<input type='submit' name='removeOne' value='-'>",
+                            "<input type='hidden' name='productIndex' value='$index'>",
+                        "</form>"
+                                .$product['qtt']. 
+                        "<form action='quantity.php' method='post'>",
+                            "<input type='submit' name='addOne' value='+'>",
+                            "<input type='hidden' name='productIndex' value='$index'>",
+                        "</form>",
                     "</td>",
                     "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                     "<td>".

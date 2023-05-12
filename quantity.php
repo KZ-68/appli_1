@@ -2,37 +2,32 @@
 
 session_start();
 
-foreach ($_POST as $value) // Pour chaque envoi de donnée considérée comme une valeur (value=)
-{
-    if ($value == "-" ) {  
 
-        foreach ($_SESSION['products'] as $index => $product) // On parcours le tableau associatif products avec les index 
-        {
-            if (isset($_POST[$index])){ // On vérifie l'existence de la clé de donnée $index envoyée
+            if (isset($_POST['removeOne'])){ // On vérifie l'existence de la clé de donnée $index envoyée
                 
-                if ($_SESSION['products'][$index]["qtt"] != 1){ // Si le tableau products inscrit en session contenant la clé  
-                
-                    $_SESSION['products'][$index]["qtt"] -= 1; 
-                    $_SESSION['products'][$index]["total"]= ($_SESSION['products'][$index]["qtt"]) * ($_SESSION['products'][$index]["price"]); 
+                $product = $_SESSION['products'][$_POST['productIndex']];
+
+                if ($product["qtt"] != 1){ // Si le tableau products inscrit en session contenant la clé  
+                    
+                    $product["qtt"] -= 1; 
+                    $product["total"]= ($product["qtt"]) * ($product["price"]); 
+                    
                 }        
                 
                 header("Location:recap.php");
-                exit;
+
             }
-        }
+        
 
-    } else if($value == "+"){ // Condition si le symbole '+' existe
+ 
+            if (isset($_POST['addOne'])){        
 
-        foreach ($_SESSION['products'] as $index => $product) 
-        {
-            if (isset($_POST[$index])){        
+                $product = $_SESSION['products'][$_POST['productIndex']];
 
-                $_SESSION['products'][$index]["qtt"] += 1; 
-                $_SESSION['products'][$index]["total"]= ($_SESSION['products'][$index]["qtt"]) * ($_SESSION['products'][$index]["price"]);                                      
+                $product["qtt"] += 1; 
+                $product["total"]= ($product["qtt"]) * ($product["price"]);                                      
                                     
                 header("Location:recap.php");   
-                exit;    
+  
             }
-        }
-    }
-}
+ 
