@@ -5,29 +5,21 @@ session_start();
 
             if (isset($_POST['removeOne'])){ // On vérifie l'existence de la clé de donnée $index envoyée
                 
-                $product = $_SESSION['products'][$_POST['productIndex']];
-
-                if ($product["qtt"] != 1){ // Si le tableau products inscrit en session contenant la clé  
+                if ($_SESSION['products'][$_POST['productIndex']]['qtt'] != 1){ // Si le tableau products inscrit en session contenant la clé  
                     
-                    $product["qtt"] -= 1; 
-                    $product["total"]= ($product["qtt"]) * ($product["price"]); 
+                    $_SESSION['products'][$_POST['productIndex']]['qtt'] -= 1; 
+                    $_SESSION['products'][$_POST['productIndex']]['total']= ($_SESSION['products'][$_POST['productIndex']]['qtt']) * ($_SESSION['products'][$_POST['productIndex']]['price']); 
                     
-                }        
+                }
                 
-                header("Location:recap.php");
+                header('Location:recap.php');
 
-            }
-        
+            } else if (isset($_POST['addOne'])){        
 
- 
-            if (isset($_POST['addOne'])){        
-
-                $product = $_SESSION['products'][$_POST['productIndex']];
-
-                $product["qtt"] += 1; 
-                $product["total"]= ($product["qtt"]) * ($product["price"]);                                      
+                $_SESSION['products'][$_POST['productIndex']]['qtt'] += 1; 
+                $_SESSION['products'][$_POST['productIndex']]['total']= ($_SESSION['products'][$_POST['productIndex']]['qtt']) * ($_SESSION['products'][$_POST['productIndex']]['price']);                                      
                                     
-                header("Location:recap.php");   
+                header('Location:recap.php');
   
             }
  
