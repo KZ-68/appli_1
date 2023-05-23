@@ -1,6 +1,6 @@
 body {
-    background-color: rgb(23, 13, 50);
-    color: antiquewhite;
+    background-color: #0C1629;
+    color: #FFFFFF;
 }
 
 nav {
@@ -12,8 +12,8 @@ ul {
 }
 
 .button_submit {
-    background: linear-gradient(45deg, #461599, #04029b);
-    border-color: rgb(23, 13, 50);
+    background: #0F2D40;
+    border-color: #140D36;
     color: antiquewhite;
     font-weight: 700;
     padding: 10px;
@@ -23,10 +23,10 @@ ul {
 
 
 main {
-    background-color: rgb(23, 13, 50);
+    background-color: #0F2D40;
     border-radius: 15px;
     padding: 25px;
-    border: 3px solid rgb(50 29 84);
+    border: 3px solid #0F1440;
     border-radius: 15px;
 }
 
@@ -39,18 +39,26 @@ section {
 }
 
 .entry {
-    background: linear-gradient(45deg, #461599, #04029b);
+    background: linear-gradient(45deg, #0D3136, #0C1629);
     border-radius: 15px;
     font-size: 20px;
     width: 326px;
     height: 289px;
     padding: 25px;
-    box-shadow: 0px 7px 5px 0px #39045e;
+    box-shadow: 0px 7px 5px 0px #140D36;
 }
 
 input {
     border-radius: 10px;
-    border: 3px solid #39045e;
+    border: 3px solid #140D36;
 }
 
-
+.add_btn {
+    background: linear-gradient(45deg, #140D36, #0F1440);
+    border-color: #2D3142;
+    color: antiquewhite;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+}
