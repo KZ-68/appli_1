@@ -1,5 +1,18 @@
-nav {
-    padding-bottom: 10px;
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+#back_menu {
+    margin: 7px 0;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 15px;
+    top: 0px;
 }
 
 h2 {
@@ -27,3 +40,33 @@ th {
 }
 
 tbody tr:nth-child(even) {background-color: #f2f2f2;}
+
+.quantity_product {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.minus_btn {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+    border-radius: 10px;
+}
+
+.plus_btn {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+    border-radius: 10px;
+}
+
+.products_number {
+    padding-top: 30px;
+}
