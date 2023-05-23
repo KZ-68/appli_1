@@ -59,7 +59,7 @@
                     </label>
                 </p>
                 <p>
-                    <input type="submit" name="submit" value="Ajouter le produit"> <!-- Le  champ  <input  type="submit">,  représente  le  bouton  de  soumission  du  formulaire-->
+                    <input class="add_btn" type="submit" name="submit" value="Ajouter le produit"> <!-- Le  champ  <input  type="submit">,  représente  le  bouton  de  soumission  du  formulaire-->
                 </p>
 
                 <?php
