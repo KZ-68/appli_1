@@ -1,6 +1,6 @@
 <?php 
-// Le démarrage de la session permet de stocker les données de navigations et de les réutiliser durant la session, un ID unique est stocké dans un cookie 
-// et par défaut est supprimé à la fermeture du navigateur
+// Une session permet de stocker les informations d'un utilisateur et de les réutiliser durant la session,
+// un Identifiant (ID) unique est stocké localement et est supprimé à la fermeture du navigateur, ou de la session
 session_start();
 
 if(isset($_POST["submit"])) { // Vérifie l'existence de la clé "submit" dans le tableau $_POST
@@ -8,8 +8,11 @@ if(isset($_POST["submit"])) { // Vérifie l'existence de la clé "submit" dans l
     $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // Valide le prix si il s'agit d'un nombre à virgule, on y ajoute les drapeaux FILTER_FLAG_ALLOW_THOUSAND, pour permettre l'utilisation du caractère "," ou "." pour la décimale
     $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT); // Valide la quantité si celle-ci est un nombre entier, au moins égal à 1
     
-    // Donc à chaque donnée saisie dans le formulaire, les filtres vérifient si les données sont valides
-    // Cela permet d'éviter les failles XSS et les injections SQL
+    /* Donc à chaque donnée saisie dans le formulaire, les filtres vérifient si les données sont valides
+    Cela permet d'éviter les failles XSS et les injections SQL */
+    
+    /* XSS est une faille côté navigateur (client), qui permet d'injecter du code malveillant (javascript), 
+    le but pour un pirate est de voler les données présents dans les cookies, d'effectuer des redirections, modifier la page pour faire du phishing */
     
     if ($name && $price && $qtt) {
         // Enregistrement du produit en session
