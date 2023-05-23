@@ -1,7 +1,3 @@
-<?php 
-    session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -28,12 +24,14 @@
     </header>
     <main>
     <?php 
-        // Une requête HTTP est une demande d'un client vers un serveur  
+        session_start();
+        /* Une requête HTTP est une demande d'un client vers un serveur, cette demande se fait par au moins deux méthodes :
+         La méthode GET et la méthode POST  */
         
         // Une superglobales est une variable native à PHP, qui contient des informations, en tableau associative, avec une portée qui est GLOBALE, accessible sur toutes les pages
 
 
-        // Condition qui vérifie que si soit la clé "products" n'existe pas, soit que les données sont vides
+        // Condition qui vérifie que si soit la clé "products" n'existe pas, soit que le tableau est vide
         // isset détermine si une variable est considéré comme définie et renvoie true, ou renvoi false si la variable est null
         if(!isset($_SESSION['products']) || empty($_SESSION['products'])) {
             echo "<p>Aucun produit en session...</p>";
@@ -51,6 +49,7 @@
                 "</thead>",
                 "<tbody>";
         $totalGeneral = 0; // On initialise une variable $totalGeneral
+        
         //  On crée une boucle qui exécute, produit par produit, les mêmes instructions qui vont permettre l'affichage uniforme de chacun d'entre eux. 
         // $index vaut pour l'index du tableau $_SESSION['products'], numéroté par produit
         // $product vaut pour les produits
@@ -59,7 +58,7 @@
             echo "<tr>",
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
-                    "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>", // Affiche le format du prix avec deux   décimales 
+                    "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>", // Affiche le format du prix avec deux décimales 
                     "<td class='quantity_product'>".
                         "<form action='quantity.php' method='post'>",
                             "<input class='minus_btn' type='submit' name='removeOne' value='-'>",
@@ -77,6 +76,8 @@
                             "<input class='btn btn-danger' type='submit' name='clearOne' value='Supprimer'>",
                             "<input type='hidden' name='productIndex' value='$index'>",
                         "</form>",
+                        /* Comme la valeur des boutons submit est prise pour afficher un nom, on crée un input invisible, 
+                        qui prend comme valeur l'index de nos produits*/
                     "</td>",
                     // number_format(variable à modifier, nombre de décimales souhaité, caractère séparateur décimal, caractère séparateur de milliers)
                 "</tr>";
@@ -90,10 +91,9 @@
          "</table>";
         }
         
-        if(!isset($_SESSION['products']) || empty($_SESSION['products'])) { // Condition si un tableau différent de products est inscrit en session, OU si le tableau products est vide
+        if(!isset($_SESSION['products']) || empty($_SESSION['products'])) { // Condition qui vérifie que si soit la clé "products" n'existe pas, soit que le tableau est vide
             echo "<h4 class='products_number'>", "Nombre de produits : 0" , "</h4>";
         } else {
-
         $productsCount = count($_SESSION['products']); // Affecte une variable pour compter les produits du tableau products
             echo "<h4 class='products_number'>", "Nombre de produits : ".$productsCount."</h4>",
             "<form action ='delete.php' method='post'><input class ='btn btn-danger' type='submit' name='clearAll' value='Tout supprimer'></form>" ;        
